@@ -1,0 +1,496 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #ff0066;
+    --secondary-color: #00ffff;
+    --accent-color: #ffff00;
+}
+
+@keyframes move-background {
+    from {
+        transform: translate3d(0px, 0px, 0px);
+    }
+    to { 
+        transform: translate3d(1000px, 0px, 0px);
+    }
+}
+
+@keyframes neon-pulse {
+    0%, 100% {
+        text-shadow: 0 0 10px #fff,
+                     0 0 20px var(--primary-color),
+                     0 0 30px var(--primary-color),
+                     0 0 40px var(--primary-color),
+                     0 0 70px var(--primary-color),
+                     0 0 80px var(--primary-color),
+                     0 0 100px var(--primary-color),
+                     0 0 150px var(--primary-color);
+    }
+    50% {
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px var(--secondary-color),
+                     0 0 15px var(--secondary-color),
+                     0 0 20px var(--secondary-color),
+                     0 0 35px var(--secondary-color),
+                     0 0 40px var(--secondary-color),
+                     0 0 50px var(--secondary-color),
+                     0 0 75px var(--secondary-color);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    75% {
+        transform: translateY(20px) rotate(-5deg);
+    }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: perspective(1000px) rotateX(0) rotateY(0);
+    }
+    50% {
+        transform: perspective(1000px) rotateX(180deg) rotateY(90deg);
+    }
+    100% {
+        transform: perspective(1000px) rotateX(360deg) rotateY(0);
+    }
+}
+
+@keyframes dragon-float {
+    0%, 100% {
+        transform: translateY(0) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(-5deg);
+    }
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: #000;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.stars, .twinkling, .clouds {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png') repeat;
+    z-index: -3;
+}
+
+.twinkling {
+    background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png') repeat;
+    z-index: -2;
+    animation: move-background 70s linear infinite;
+}
+
+.clouds {
+    background: transparent url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/clouds_repeat.png') repeat;
+    z-index: -1;
+    animation: move-background 150s linear infinite;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 2rem;
+    z-index: 2;
+}
+
+.content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.title-3d {
+    position: relative;
+    perspective: 1000px;
+    margin-bottom: 2rem;
+}
+
+.title-3d h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: neon-pulse 2s infinite;
+    transform-style: preserve-3d;
+}
+
+.reflection {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    transform: rotateX(180deg);
+    filter: blur(2px);
+}
+
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    perspective: 1000px;
+}
+
+.time-block {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.time-cube {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.time-block:hover .time-cube {
+    animation: rotate3d 2s ease-in-out;
+}
+
+.time-block .glow {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    animation: neon-pulse 1.5s ease-in-out infinite;
+}
+
+.label {
+    font-size: 1.2rem;
+    color: #ddd;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.dragon-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.dragon {
+    position: absolute;
+    width: 150px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 20px rgba(255,0,0,0.5));
+    animation: dragon-float 4s ease-in-out infinite;
+}
+
+.dragon.left {
+    left: -180px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 Q80,50 50,90" stroke="red" fill="none" stroke-width="5"/></svg>');
+}
+
+.dragon.right {
+    right: -180px;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1);
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 Q80,50 50,90" stroke="red" fill="none" stroke-width="5"/></svg>');
+}
+
+.wishes {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+}
+
+.wishes.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.wishes h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.wish-content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.wish-list {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.wish-list li {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+.wish-list li:hover {
+    transform: translateX(10px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.lanterns {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    z-index: 2;
+}
+
+.lantern {
+    width: 90px;
+    height: 120px;
+    background: rgba(255, 0, 0, 0.8);
+    border-radius: 50%;
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+}
+
+.lantern::before {
+    content: "福";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.lantern::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 0 0 10px 10px;
+}
+
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    #countdown {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .time-block {
+        min-width: 80px;
+        padding: 1rem;
+    }
+    
+    .time-block .glow {
+        font-size: 2rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .wishes h2 {
+        font-size: 1.5rem;
+    }
+    
+    .wish-list li {
+        font-size: 1rem;
+    }
+    
+    .lantern {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .lantern::before {
+        font-size: 1.5rem;
+    }
+    
+    .dragon {
+        width: 100px;
+        height: 200px;
+    }
+}
+
+/* 增强烟花效果 */
+.firework-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    filter: blur(0.5px);
+}
+
+.firework {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+}
+
+.firework::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 80px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        #ffeb3b 50%,
+        #ff5722 100%
+    );
+    transform-origin: top;
+    animation: shoot 1s ease-out forwards;
+    filter: drop-shadow(0 0 2px #fff)
+            drop-shadow(0 0 4px #ff5722)
+            drop-shadow(0 0 6px #ffeb3b);
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.explosion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: explode 0.5s ease-out forwards;
+}
+
+.spark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #fff, var(--spark-color));
+    animation: spark 1s ease-out forwards;
+    filter: drop-shadow(0 0 3px var(--spark-color))
+            drop-shadow(0 0 6px var(--spark-color));
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes spark {
+    0% {
+        transform: rotate(var(--rotation)) translateY(0) scale(1);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(var(--rotation)) translateY(100px) scale(0);
+        opacity: 0;
+    }
+}
+
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: screen;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025新年快乐</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <div class="firework-container"></div>
+    <canvas id="fireworksCanvas"></canvas>
+    <div class="container">
+        <div class="fireworks"></div>
+        <div class="dragon-container">
+            <div class="dragon left"></div>
+            <div class="dragon right"></div>
+        </div>
+        <div class="content">
+            <div class="title-3d">
+                <h1 class="animate__animated animate__bounce">2025新年倒计时</h1>
+                <div class="reflection"></div>
+            </div>
+            <div id="countdown">
+                <div class="time-block" data-tilt>
+                    <div class="time-cube">
+                        <span id="days" class="glow">00</span>
+                        <span class="label">天</span>
+                    </div>
+                </div>
+                <div class="time-block" data-tilt>
+                    <div class="time-cube">
+                        <span id="hours" class="glow">00</span>
+                        <span class="label">时</span>
+                    </div>
+                </div>
+                <div class="time-block" data-tilt>
+                    <div class="time-cube">
+                        <span id="minutes" class="glow">00</span>
+                        <span class="label">分</span>
+                    </div>
+                </div>
+                <div class="time-block" data-tilt>
+                    <div class="time-cube">
+                        <span id="seconds" class="glow">00</span>
+                        <span class="label">秒</span>
+                    </div>
+                </div>
+            </div>
+            <div class="wishes hidden" id="wishes">
+                <h2 class="animate__animated animate__rubberBand">🎉 新年快乐 🎊</h2>
+                <div class="wish-content">
+                    <p>愿2025年带给你：</p>
+                    <ul class="wish-list">
+                        <li class="animate__animated animate__fadeInLeft">✨ 无限希望与喜悦</li>
+                        <li class="animate__animated animate__fadeInRight">🌟 梦想成真的机遇</li>
+                        <li class="animate__animated animate__fadeInLeft">💪 克服挑战的勇气</li>
+                        <li class="animate__animated animate__fadeInRight">❤️ 温暖幸福的时光</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lanterns">
+        <div class="lantern"></div>
+        <div class="lantern"></div>
+    </div>
+    <canvas id="bgCanvas"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
